@@ -1,5 +1,8 @@
 import express from "express";
-import { githubAuthorizationHandler, githubTokenHandler } from "../controllers/github.controller";
+import {
+	githubAuthorizationHandler,
+	githubTokenHandler,
+} from "../controllers/github.controller";
 
 const sessionRouter = express.Router();
 
