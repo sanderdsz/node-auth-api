@@ -13,16 +13,10 @@ type GithubTokenProps = {
 	access_token: string;
 };
 
-type GithubUserProps = {
-	email: string;
-	name: string;
-	avatar_url: string;
-};
-
 /*
  * Function that receives the GitHub token.
  */
-export const getGithubToken = async ({
+export const getGithubTokenService = async ({
 	code,
 }: {
 	code: string;
@@ -33,9 +27,7 @@ export const getGithubToken = async ({
 		client_secret: GITHUB_OAUTH_CLIENT_SECRET,
 		code,
 	};
-
 	const queryString = qs.stringify(options);
-
 	try {
 		const { data } = await axios.post(
 			`${url}?${queryString}`,
@@ -44,44 +36,10 @@ export const getGithubToken = async ({
 			},
 			{ headers: { accept: "application/json" } }
 		);
-
 		const decoded = qs.parse(data) as GithubTokenProps;
-
 		return decoded;
 	} catch (err) {
 		console.log(err);
-
 		throw err;
 	}
-};
-
-/*
- * Function that receive user details from GitHub API.
- */
-export const getGithubUser = async (
-	access_token: string
-): Promise<GithubUserProps> => {
-	try {
-		const { data } = await axios.get(`https://api.github.com/user`, {
-			headers: {
-				Authorization: "token " + access_token,
-			},
-		});
-
-		return data;
-	} catch (err) {
-		console.log(err);
-
-		throw err;
-	}
-};
-
-/*
- * Function that construct the Auth entrypoint for GitHub.
- */
-export const getGithubAuth = () => {
-	return `${
-		"https://github.com/login/oauth/authorize?client_id=" +
-		GITHUB_OAUTH_CLIENT_ID
-	}`;
 };

@@ -1,8 +1,8 @@
 import express from "express";
-import { githubUserHandler } from "../controllers/github.controller";
+import {githubUserDetailsController} from "../controllers/githubUserDetails.controller";
 
 const userRouter = express.Router();
 
-userRouter.get("/github", githubUserHandler);
+userRouter.get("/github", githubUserDetailsController);
 
 export { userRouter };

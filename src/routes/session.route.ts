@@ -1,12 +1,10 @@
 import express from "express";
-import {
-	githubAuthorizationHandler,
-	githubTokenHandler,
-} from "../controllers/github.controller";
+import {githubAuthorizationController} from "../controllers/githubAuthorization.controller";
+import {githubTokenController} from "../controllers/githubToken.controller";
 
 const sessionRouter = express.Router();
 
-sessionRouter.get("/authorization/github", githubAuthorizationHandler);
-sessionRouter.get("/oauth/github", githubTokenHandler);
+sessionRouter.get("/authorization/github", githubAuthorizationController);
+sessionRouter.get("/oauth/github", githubTokenController);
 
 export { sessionRouter };
