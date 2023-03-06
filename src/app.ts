@@ -1,10 +1,12 @@
 import express from "express";
 import router from "./routes";
 import * as dotenv from "dotenv";
+import { createTables } from "./utils/database";
 
 dotenv.config();
 const app = express();
 const port = 8081;
+createTables();
 
 app.use("/api/v1", router);
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 type GithubUserProps = {
+	node_id: string;
 	email: string;
 	name: string;
 	avatar_url: string;
