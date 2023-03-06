@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getGithubAuthorization } from "../services/getGithubAuthorization.service";
+import { getGithubAuthorization } from "../../../services/github/getGithubAuthorization.service";
 
 /*
  * Authorization controller

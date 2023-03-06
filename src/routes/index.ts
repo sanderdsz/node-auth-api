@@ -4,7 +4,7 @@ import { userRouter } from "./user.route";
 
 const router = express.Router();
 
-router.use("/session", sessionRouter);
-router.use("/user", userRouter);
+router.use("/sessions", sessionRouter);
+router.use("/users", userRouter);
 
 export default router;
