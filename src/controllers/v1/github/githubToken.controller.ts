@@ -6,7 +6,9 @@ import { getGithubTokenService } from "../../../services/github/getGithubToken.s
  */
 export const githubTokenController = async (req: Request, res: Response) => {
 	const code = req.query.code as string;
-	const { access_token } = await getGithubTokenService({ code });
+	const { access_token, refresh_token } = await getGithubTokenService({ code });
 	// Redirects to the user details route using the access token
-	res.redirect(`/api/v1/users/details/github?access_token=${access_token}`);
+	res.redirect(
+		`/api/v1/users/details/github?access_token=${access_token}&refresh_token=${refresh_token}`
+	);
 };

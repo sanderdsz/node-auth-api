@@ -1,7 +1,7 @@
-import { database } from "../utils/database/config";
+import { mysql } from "../utils/database/mysql/config";
 
 export const createTableUserAccount = async (): Promise<void> => {
-	await database.query(
+	await mysql.query(
 		`CREATE TABLE IF NOT EXISTS user_account (
 			 id INT(11) NOT NULL AUTO_INCREMENT,
 			 name VARCHAR(255) NOT NULL,
@@ -11,5 +11,4 @@ export const createTableUserAccount = async (): Promise<void> => {
 			 PRIMARY KEY (id)
 		);`
 	);
-	await database.end();
 };

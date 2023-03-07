@@ -1,7 +1,7 @@
 import express from "express";
 import router from "./routes";
 import * as dotenv from "dotenv";
-import { createTables } from "./utils/database";
+import { createTables } from "./utils/database/mysql";
 
 dotenv.config();
 const app = express();

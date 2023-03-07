@@ -6,5 +6,5 @@ const MYSQL_PLANETSCALE_URL = process.env
 	.MYSQL_PLANETSCALE_URL as unknown as string;
 
 // Database connection
-const mysql = require("mysql");
-export const database = mysql.createConnection(MYSQL_PLANETSCALE_URL);
+const connection = require("mysql");
+export const mysql = connection.createConnection(MYSQL_PLANETSCALE_URL);

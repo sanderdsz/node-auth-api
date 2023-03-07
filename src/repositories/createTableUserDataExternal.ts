@@ -1,16 +1,15 @@
-import { database } from "../utils/database/config";
+import { mysql } from "../utils/database/mysql/config";
 
 export const createTableUserDataExternal = async (): Promise<void> => {
-	await database.query(
-		`CREATE TABLE if NOT EXISTS user_data_external (
+	await mysql.query(
+		`CREATE TABLE IF NOT EXISTS user_data_external (
         id INT(11) NOT NULL AUTO_INCREMENT,
         user_id INT(11),
+        provider_id VARCHAR(255),
         provider_name VARCHAR(50),
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        provider_refresh_token VARCHAR(255),
         PRIMARY KEY (id),
         KEY user_id_idx (user_id)
 		);`
 	);
-	await database.end();
 };

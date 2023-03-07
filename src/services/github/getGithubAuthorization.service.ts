@@ -9,8 +9,5 @@ const GITHUB_OAUTH_CLIENT_ID = process.env
  * Function that construct the Auth entrypoint for GitHub.
  */
 export const getGithubAuthorization = () => {
-	return `${
-		"https://github.com/login/oauth/authorize?client_id=" +
-		GITHUB_OAUTH_CLIENT_ID
-	}`;
+	return `${"https://github.com/apps/node-auth"}`;
 };
