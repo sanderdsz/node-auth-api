@@ -1,7 +1,7 @@
-import { createTableUserAccount } from "../../../repositories/createTableUserAccount";
-import { createTableUserDataExternal } from "../../../repositories/createTableUserDataExternal";
+import { createTableUserAccountRepository } from "../../../repositories/createTableUserAccount.repository";
+import { createTableUserDataExternalRepository } from "../../../repositories/createTableUserDataExternal.repository";
 
 export const createTables = () => {
-	void createTableUserAccount();
-	void createTableUserDataExternal();
+	void createTableUserAccountRepository();
+	void createTableUserDataExternalRepository();
 };

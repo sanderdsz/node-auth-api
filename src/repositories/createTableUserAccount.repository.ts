@@ -1,6 +1,6 @@
 import { query } from "../utils/databases/mysql";
 
-export const createTableUserAccount = async (): Promise<void> => {
+export const createTableUserAccountRepository = async (): Promise<void> => {
 	await query(
 		`CREATE TABLE IF NOT EXISTS user_account (
 			 id INT(11) NOT NULL AUTO_INCREMENT,

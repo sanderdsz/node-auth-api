@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getGithubUserDetailsService } from "../../../services/github/getGithubUserDetails.service";
-import { saveUserAccount } from "../../../repositories/saveUserAccount";
+import { saveUserAccountRepository } from "../../../repositories/saveUserAccount.repository";
 
 /*
  * GitHub user details controller
@@ -15,7 +15,7 @@ export const githubUserDetailsController = async (
 	try {
 		const { email, name, avatar_url, node_id } =
 			await getGithubUserDetailsService(access_token);
-		await saveUserAccount({
+		await saveUserAccountRepository({
 			name,
 			email,
 			access_token,

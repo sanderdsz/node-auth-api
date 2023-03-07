@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { getGithubTokenService } from "../../../services/github/getGithubToken.service";
-import { updateTokens } from "../../../repositories/updateTokens";
-import { getUserDataExternalByRefreshToken } from "../../../repositories/getUserDataExternalByRefreshToken";
+import { updateTokensService } from "../../../services/updateTokens.service";
+import { getUserDataExternalByRefreshTokenRepository } from "../../../repositories/getUserDataExternalByRefreshToken.repository";
 
 /*
- * Token controller
+ * Token controller.
  */
 export const githubTokenController = async (req: Request, res: Response) => {
 	const code = req.query.code as string;
@@ -16,11 +16,11 @@ export const githubTokenController = async (req: Request, res: Response) => {
 		 */
 		if (provider_refresh_token) {
 			// Find the user data that matches the refresh token.
-			const user_data_external = await getUserDataExternalByRefreshToken(
+			const user_data_external = await getUserDataExternalByRefreshTokenRepository(
 				provider_refresh_token
 			);
 			// Update the access and refresh tokens according the user_id received.
-			const tokens = await updateTokens(user_data_external.user_id);
+			const tokens = await updateTokensService(user_data_external.user_id);
 			return res.status(200).json({
 				refresh_token: tokens.refresh_token,
 				access_token: tokens.access_token,
@@ -29,7 +29,7 @@ export const githubTokenController = async (req: Request, res: Response) => {
 		const { access_token, refresh_token } = await getGithubTokenService({
 			code,
 		});
-		// Redirects to the user details route using the access token
+		// Redirects to the user details route using the access token.
 		res.redirect(
 			`/api/v1/users/details/github?access_token=${access_token}&refresh_token=${refresh_token}`
 		);

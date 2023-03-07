@@ -1,5 +1,5 @@
 import { redis } from "../utils/databases/redis/config";
-import { saveUserDataExternal } from "./saveUserDataExternal";
+import { saveUserDataExternalRepository } from "./saveUserDataExternal.repository";
 import { query } from "../utils/databases/mysql";
 
 type UserAccountProps = {
@@ -15,7 +15,7 @@ type UserAccountProps = {
 /*
  * Save new user into user_account
  */
-export const saveUserAccount = async ({
+export const saveUserAccountRepository = async ({
 	name,
 	email,
 	access_token,
@@ -32,12 +32,12 @@ export const saveUserAccount = async ({
 		return `User ${email} already registered`;
 	} else {
 		const result = await query(queryInsertUser);
-		// TO-DO: Verification of external or internal auth data.
+		// TODO: Verification of external or internal auth data.
 		// When the auth is external, persist into external data table.
 		const user_id = result.insertId as number;
 		const id = provider_id as string;
 		const nameProvider = provider_name as string;
-		await saveUserDataExternal({
+		await saveUserDataExternalRepository({
 			user_id,
 			provider_id: id,
 			provider_name: nameProvider,

@@ -1,6 +1,6 @@
 import { query } from "../utils/databases/mysql";
 
-export const createTableUserDataExternal = async (): Promise<void> => {
+export const createTableUserDataExternalRepository = async (): Promise<void> => {
 	await query(
 		`CREATE TABLE IF NOT EXISTS user_data_external (
         id INT(11) NOT NULL AUTO_INCREMENT,

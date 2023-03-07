@@ -7,6 +7,8 @@ const database = require("mysql2/promise");
 export const query = async (queryString: string) => {
 	const connection = await database.createConnection(MYSQL_PLANETSCALE_URL);
 	const [rows, fields] = await connection.execute(queryString);
+	// End the database connection after the promise.
 	connection.end();
+	// TODO: verify future needs to export fields object.
 	return rows;
 };

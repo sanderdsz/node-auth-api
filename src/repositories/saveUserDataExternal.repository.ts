@@ -10,7 +10,7 @@ type UserDataExternalProps = {
 /*
  * Persist into MySQL the data received from oauth2 provider
  */
-export const saveUserDataExternal = async ({
+export const saveUserDataExternalRepository = async ({
 	user_id,
 	provider_id,
 	provider_name,
