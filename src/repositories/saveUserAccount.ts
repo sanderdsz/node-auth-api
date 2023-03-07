@@ -1,5 +1,5 @@
 import { redis } from "../utils/databases/redis/config";
-import { saveUserDataExternal } from "./insertUserDataExternal";
+import { saveUserDataExternal } from "./saveUserDataExternal";
 import { query } from "../utils/databases/mysql";
 
 type UserAccountProps = {

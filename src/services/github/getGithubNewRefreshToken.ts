@@ -14,16 +14,15 @@ type GithubTokenProps = {
 /*
  * Function that receives the GitHub token.
  */
-export const getGithubTokenService = async ({
-	code,
-}: {
-	code: string;
-}): Promise<GithubTokenProps> => {
+export const getGithubNewRefreshToken = async (
+	refresh_token: string
+): Promise<GithubTokenProps> => {
 	const url = "https://github.com/login/oauth/access_token";
 	const options = {
 		client_id: GITHUB_APP_OAUTH_CLIENT_ID,
 		client_secret: GITHUB_APP_OAUTH_CLIENT_SECRET,
-		code,
+		refresh_token: refresh_token,
+		grant_type: "refresh_token",
 	};
 	const queryString = qs.stringify(options);
 	try {

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getGithubUserDetailsService } from "../../../services/github/getGithubUserDetails.service";
-import { saveUserAccount } from "../../../repositories/insertUserAccount";
+import { saveUserAccount } from "../../../repositories/saveUserAccount";
 
 /*
  * GitHub user details controller
