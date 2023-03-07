@@ -6,6 +6,7 @@ export const googleUserDetailsController = async (
 	res: Response
 ) => {
 	const access_token = req.query.access_token as string;
+	const refresh_token = req.query.refresh_token as string;
 	const { email, name, picture } = await getGoogleUserDetailsService(
 		access_token
 	);
@@ -13,5 +14,7 @@ export const googleUserDetailsController = async (
 		email: email,
 		name: name,
 		picture: picture,
+		refresh_token: refresh_token,
+		access_token: access_token,
 	});
 };

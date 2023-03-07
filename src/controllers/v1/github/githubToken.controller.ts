@@ -16,9 +16,10 @@ export const githubTokenController = async (req: Request, res: Response) => {
 		 */
 		if (provider_refresh_token) {
 			// Find the user data that matches the refresh token.
-			const user_data_external = await getUserDataExternalByRefreshTokenRepository(
-				provider_refresh_token
-			);
+			const user_data_external =
+				await getUserDataExternalByRefreshTokenRepository(
+					provider_refresh_token
+				);
 			// Update the access and refresh tokens according the user_id received.
 			const tokens = await updateTokensService(user_data_external.user_id);
 			return res.status(200).json({

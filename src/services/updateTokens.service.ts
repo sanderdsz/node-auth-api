@@ -7,7 +7,10 @@ import { getUserAccountByUserIdRepository } from "../repositories/getUserAccount
 /*
  * Method that update the access and fresh tokens on both databases.
  */
-export const updateTokensService = async (user_id: number, provider?: string) => {
+export const updateTokensService = async (
+	user_id: number,
+	provider?: string
+) => {
 	const user_data = await getUserDataExternalByUserId(user_id);
 	const user_account = await getUserAccountByUserIdRepository(user_id);
 	const response = await getGithubNewRefreshToken(
