@@ -1,9 +1,8 @@
+require("dotenv").config();
 import express from "express";
 import router from "./routes";
-import * as dotenv from "dotenv";
-import { createTables } from "./utils/database/mysql";
+import { createTables } from "./utils/databases/mysql/createTables";
 
-dotenv.config();
 const app = express();
 const port = 8081;
 createTables();

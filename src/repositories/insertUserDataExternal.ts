@@ -1,4 +1,4 @@
-import { mysql } from "../utils/database/mysql/config";
+import { query } from "../utils/databases/mysql";
 
 type UserDataExternalProps = {
 	user_id: number;
@@ -16,11 +16,9 @@ export const saveUserDataExternal = async ({
 	provider_name,
 	provider_refresh_token,
 }: UserDataExternalProps) => {
-	await mysql.query(
+	await query(
 		`INSERT INTO user_data_external 
     	(user_id, provider_id, provider_name, provider_refresh_token)
-    	VALUES (?, ?, ?, ?);
-		`,
-		[user_id, provider_id, provider_name, provider_refresh_token]
+    	VALUES ('${user_id}', '${provider_id}', '${provider_name}', '${provider_refresh_token}')`
 	);
 };

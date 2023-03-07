@@ -1,8 +1,5 @@
 import qs from "qs";
 import axios from "axios";
-import * as dotenv from "dotenv";
-
-dotenv.config();
 
 const GITHUB_OAUTH_CLIENT_ID = process.env
 	.GITHUB_OAUTH_CLIENT_ID as unknown as string;

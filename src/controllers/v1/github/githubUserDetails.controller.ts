@@ -27,9 +27,12 @@ export const githubUserDetailsController = async (
 			email: email,
 			name: name,
 			avatar_url: avatar_url,
+			access_token: access_token,
 			refresh_token: refresh_token,
 		});
-	} catch (err: any) {
-		throw new Error(err.message);
+	} catch (error: unknown) {
+		if (error instanceof Error) {
+			return res.status(500).json(error.message);
+		}
 	}
 };

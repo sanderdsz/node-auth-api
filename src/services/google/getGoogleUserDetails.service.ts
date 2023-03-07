@@ -1,5 +1,4 @@
 import axios from "axios";
-import { connect } from "../../utils/database/mysql/config";
 
 type GoogleUserProps = {
 	id: string;
@@ -20,7 +19,6 @@ export const getGoogleUserDetailsService = async (
 				Authorization: `Bearer ${access_token}`,
 			},
 		});
-
 		return data;
 	} catch (err: any) {
 		throw new Error(err.message);
