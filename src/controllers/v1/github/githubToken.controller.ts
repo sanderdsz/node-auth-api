@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { getGithubTokenService } from "../../../services/github/getGithubToken.service";
 import { updateTokensService } from "../../../services/updateTokens.service";
-import { getUserDataExternalByRefreshTokenRepository } from "../../../repositories/getUserDataExternalByRefreshToken.repository";
 
 /*
  * Token controller.
@@ -15,22 +14,18 @@ export const githubTokenController = async (req: Request, res: Response) => {
 		 * client don't want a new user, just revalidate and refresh the tokens.
 		 */
 		if (provider_refresh_token) {
-			// Find the user data that matches the refresh token.
-			const user_data_external =
-				await getUserDataExternalByRefreshTokenRepository(
-					provider_refresh_token
-				);
-			// Update the access and refresh tokens according the user_id received.
-			const tokens = await updateTokensService(user_data_external.user_id);
+			// Update the access and refresh tokens according the provider_refresh_token received.
+			const tokens = await updateTokensService(provider_refresh_token);
 			return res.status(200).json({
 				refresh_token: tokens.refresh_token,
 				access_token: tokens.access_token,
 			});
 		}
+		// Receive a new set of access and refresh tokens from GitHub API.
 		const { access_token, refresh_token } = await getGithubTokenService({
 			code,
 		});
-		// Redirects to the user details route using the access token.
+		// Redirects to the user details route using the access and refresh tokens.
 		res.redirect(
 			`/api/v1/users/details/github?access_token=${access_token}&refresh_token=${refresh_token}`
 		);
