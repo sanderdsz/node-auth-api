@@ -16,7 +16,6 @@ a refresh_token, when the OAUTH flow implement's it, should be wise to change th
 - [x] Tokens revalidation and persistence.
 - [ ] Tokens expire verification.
 
-
 ### Google Flow
 
 - [x] Redirect auth URL.

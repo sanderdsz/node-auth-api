@@ -1,6 +1,6 @@
-import { redis } from "../utils/databases/redis/config";
 import { saveUserDataExternalRepository } from "./saveUserDataExternal.repository";
 import { query } from "../utils/databases/mysql";
+import { saveAccessTokenRepository } from "./saveAccessToken.repository";
 
 type UserAccountProps = {
 	name: string;
@@ -44,14 +44,7 @@ export const saveUserAccountRepository = async ({
 			provider_refresh_token: refresh_token,
 		});
 		// Persist the access_token into Redis.
-		await saveAccessToken(email, access_token);
+		await saveAccessTokenRepository(email, access_token);
 	}
 	console.log(`User ${email} save success`);
-};
-
-/*
- * Save the tokens into Redis databases.
- */
-const saveAccessToken = async (email: string, access_token: string) => {
-	await redis.set(email, access_token);
 };
